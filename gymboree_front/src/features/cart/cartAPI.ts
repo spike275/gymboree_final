@@ -1,8 +1,11 @@
 import axios from "axios";
 import { SERVER } from "../../globalVar";
 
-
-
+/**
+ * Sends an order request to the server.
+ *
+ * @param {Object} creds - The order details.
+ */
 export function sendOrder(creds:any) {
   console.log(creds);
   return new Promise<{ data: any }>((resolve) =>

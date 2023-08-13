@@ -10,12 +10,14 @@ import { getAllProductsAsync, getMoreProdsAsync, selectProducts } from './manyPr
 import { selectProdctsOrderd } from '../MyOrders/myOrdersSlice';
 import { getReviewsAsync } from '../review/reviewSlice';
 
-
-
+/**
+ * Component for displaying products on the home page.
+ */
 const Home = () => {
   const dispatch = useAppDispatch()
   const prods = useSelector(selectProducts)
 
+  // Fetch products on component mount
   useEffect(() => {
     dispatch(getAllProductsAsync())
 

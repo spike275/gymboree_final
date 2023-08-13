@@ -5,10 +5,12 @@ import { getReviews, sendNewReview } from './reviewAPI';
 
 //  THIS STATE HOLDS ALL THE ORDERS THE USER MADE
 
+// Initial state for the review slice
 const initialState: Review = {
   all_reviews: {}
 };
 
+// Async thunk to fetch reviews
 export const getReviewsAsync = createAsyncThunk(
   'Reviews/Reviews',
   async () => {
@@ -17,6 +19,7 @@ export const getReviewsAsync = createAsyncThunk(
   }
 );
 
+// Async thunk to send a new review
 export const sendReview = createAsyncThunk(
   "Reviews/sendreview",
   async ({ productId, rating, title, text}: { productId: string, rating: number, title: string, text: string,}) => {
@@ -25,12 +28,12 @@ export const sendReview = createAsyncThunk(
   }
 );
 
-
+// Slice for managing reviews
 export const reviewSlice = createSlice({
   name: 'review',
   initialState,
   reducers: {},
-
+  // Reducers for handling async actions
   extraReducers: (builder) => {
     builder
       .addCase(getReviewsAsync.fulfilled, (state, action) => {
@@ -51,7 +54,7 @@ export const reviewSlice = createSlice({
           avgRating: product.ratingSum / product.ratingCount,
         }));
 
-        // Output the final list of objects containing the average rating for each product
+        // Store the final list of objects containing the average rating for each product
         state.all_reviews = avgRatings
 
 
@@ -61,7 +64,7 @@ export const reviewSlice = createSlice({
 });
 
 
-
+// Export actions, selectors, and reducer
 export const { } = reviewSlice.actions;
 export const selectAllReviews = (state: RootState) => state.review.all_reviews;
 

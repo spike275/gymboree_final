@@ -3,7 +3,7 @@ import { RootState, AppThunk } from '../../app/store';
 import { addProdFetch, getAllProducts, rmv_prod } from './productAPI';
 import Product from "../../models/Product"
 
-
+// Initial state for the product slice
 const initialState: Product = {
   name: "",
   description: "",
@@ -13,6 +13,9 @@ const initialState: Product = {
   category: ""
 };
 
+/**
+ * Async thunk to add a product to the store.
+ */
 export const addProdAsync = createAsyncThunk(
   'product/addProd',
   async (creds: any) => {
@@ -22,6 +25,9 @@ export const addProdAsync = createAsyncThunk(
   }
 );
 
+/**
+ * Async thunk to remove a product from the store.
+ */
 export const removeProdAsync = createAsyncThunk(
   'product/rmvProd',
   async (creds: any) => {
@@ -31,29 +37,30 @@ export const removeProdAsync = createAsyncThunk(
   }
 );
 
-
+/**
+ * Redux slice for managing product state.
+ */
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
- 
+    // You can add any additional reducer actions here if needed
     
-
-
   },
 
   extraReducers: (builder) => {
     builder
-      .addCase(addProdAsync.fulfilled, (state, action) => {
+      .addCase(addProdAsync.fulfilled, (state, action) => { // Handle fulfillment of add product async thunk
         console.log(action.payload)
       })
-      .addCase(removeProdAsync.fulfilled, (state, action) => {
+      .addCase(removeProdAsync.fulfilled, (state, action) => { // Handle fulfillment of remove product async thunk
         console.log(action.payload)
       })
     
   },
 });
 
-export const { } = productSlice.actions;
 
+// Export actions and reducer from the slice
+export const { } = productSlice.actions;
 export default productSlice.reducer;

@@ -1,3 +1,6 @@
+/* Styles for the Home page components */
+
+/* Wrapper for centering content */
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -8,6 +11,7 @@
     background-size: cover;
   }
   
+  /* Container for displaying cards */
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -16,6 +20,7 @@
     padding: 40px;
   }
   
+  /* Styling for individual cards */
   .card {
     width: 300px;
     height: 400px;
@@ -26,17 +31,20 @@
     cursor: pointer;
   }
   
+  /* Card hover effect */
   .card:hover {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
     transform: rotateY(180deg);
   }
   
+  /* Pagination container */
   .pagination-container {
     display: flex;
     justify-content: center;
     margin-top: 40px;
   }
   
+  /* Styling for pagination buttons */
   .pagination-button {
     background-color: red;
     color: white;
@@ -49,10 +57,12 @@
     animation: pulse 2s infinite;
   }
   
+  /* Pagination button hover effect */
   .pagination-button:hover {
     transform: scale(1.1);
   }
   
+  /* Pulse animation for pagination buttons */
   @keyframes pulse {
     0% {
       transform: scale(1);

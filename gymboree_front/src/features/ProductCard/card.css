@@ -1,3 +1,4 @@
+/* Styling for the main card container */
 .main {
   display: flex;
   flex-direction: column;
@@ -13,11 +14,13 @@
   max-width: 300px;
 }
 
+/* Styling for hovering effect on the main card container */
 .main:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Styling for icons within the card */
 .icon {
   position: absolute;
   top: 10px;
@@ -28,15 +31,18 @@
   transition: color 0.3s ease-in-out;
 }
 
+/* Styling for icon hover effect */
 .icon:hover {
   color: #00bcd4;
 }
 
+/* Styling for the details container within the card */
 .details_container {
   padding: 10px;
   text-align: center;
 }
 
+/* Styling for the "Add to Cart" button */
 .add2cart_btn {
     background-color: #00bcd4;
     padding: 10px 20px;
@@ -50,6 +56,7 @@
     transition: background-color 0.3s ease-in-out;
   }
   
+  /* Styling for the "Add to Cart" button hover effect */
   .add2cart_btn:hover {
     background-color: #008ba3;
   }

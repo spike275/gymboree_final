@@ -5,9 +5,13 @@ import { getAllProductsAsync, selectCategories, selectProducts } from './manyPro
 import Product from '../../models/Product';
 import { useAppDispatch } from '../../app/hooks';
 
+/**
+ * Component for displaying products by departments.
+ */
 const Departments = () => {
 
     const dispatch = useAppDispatch()
+    // Fetch products on component mount
     useEffect(() => {
         dispatch(getAllProductsAsync(true))
     }, [])

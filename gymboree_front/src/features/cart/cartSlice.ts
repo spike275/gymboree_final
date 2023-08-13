@@ -4,13 +4,15 @@ import { sendOrder } from './cartAPI';
 import { Cart } from "../../models/Cart"
 import Product from '../../models/Product';
 
+// Initial state for the cart slice
 const initialState: Cart = {
   products: []
 };
 
 
-
-// #####################################################################################################
+/**
+ * Async thunk to send an order.
+ */
 export const orderAsync = createAsyncThunk(
   'order/orderSend',
   async (creds: any) => {
@@ -19,10 +21,15 @@ export const orderAsync = createAsyncThunk(
     return response.data;
   }
 );
+
+/**
+ * Redux slice for managing the cart state.
+ */
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    //Adds a product to the cart.
     addToCart: (state, action) => {
       const tmpItem: Product = action.payload
       const tmpAr: Product[] = state.products.filter(x => x.id === tmpItem.id)
@@ -42,7 +49,7 @@ export const cartSlice = createSlice({
       state.products = state.products.filter(x => x.id != tmpItem.id)
 
     },
-
+    //Changes the amount of a product in the cart.
     change_amount: (state, action) => {
       const tmpAr = state.products.filter(x => x.id === action.payload.id)
       {
@@ -70,6 +77,7 @@ export const cartSlice = createSlice({
   },
 });
 
+// Export actions, selectors, and reducer from the slice
 export const { addToCart, remove_prod_cart, change_amount } = cartSlice.actions;
 export const selectCart = (state: RootState) => state.cart.products;
 export default cartSlice.reducer;

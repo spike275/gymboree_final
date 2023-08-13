@@ -13,6 +13,18 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Rating, TextField, Typography } from '@mui/material';
 
+/**
+ * Card component displays product details and provides functionality for adding to cart and reviewing.
+ * 
+ * @component
+ * @param {object} props - Component props
+ * @param {object} props.prod - Product object
+ * @param {string} props.img - Image URL of the product
+ * @param {number} props.price - Product price
+ * @param {string} props.name - Product name
+ * @param {string} props.desc - Product description
+ * @param {Function} props.update_products - Function to update products list
+ */
 const Card = (props: any) => {
 
     const dispatch = useAppDispatch()
@@ -22,10 +34,14 @@ const Card = (props: any) => {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [Value, setValue] = useState(0)
+    // Handle removal of product
     const handle_remove = async () => {
         await dispatch(removeProdAsync(props.prod.id))
         props.update_products()
     }
+
+    
+    // Handle submitting a review
     const handleReview = (rate: any) => {
         setTitle("My Review Title");
         setText("My Review Text");
@@ -37,6 +53,7 @@ const Card = (props: any) => {
             text: "My Review Text"
         }))
     }
+    // Find average rating for the product if available
     const tmp = Array.isArray(all_reviews) ? all_reviews.find((review: { product: any; }) => review.product === props.prod.id) : undefined;
     const tmprate = tmp ? tmp.avgRating : 0
     const tmp_img = props.img.substring(1)

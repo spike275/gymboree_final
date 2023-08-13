@@ -5,6 +5,10 @@ import { addToCart } from '../features/cart/cartSlice'
 import { getAllProductsAsync, selectProducts } from '../features/Home/manyProductsSlice'
 import { SERVER } from '../globalVar'
 import './searchBar.css'
+
+/**
+ * SearchBar component for searching and displaying product suggestions.
+ */
 const SearchBar = () => {
     const dispatch = useAppDispatch()
 
@@ -16,7 +20,6 @@ const SearchBar = () => {
     return (
         <div>
             <div>
-
                 <input list="mylist" className="searchBar" placeholder="search" onChange={(e) => setSearch(e.target.value)} />
                 <div style={Search.length > 0 ? { display: "block" } : { display: 'none' }} className=" dropContent">
                     {prods.results && prods.results.map((x: any, i: number) =>

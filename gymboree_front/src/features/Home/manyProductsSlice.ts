@@ -12,6 +12,7 @@ const initialState: Products = {
   categories: []
 };
 
+// Async thunk for fetching all products
 export const getAllProductsAsync = createAsyncThunk(
   'products/getAllProducts',
   async (allProducts: boolean = false) => {
@@ -20,7 +21,7 @@ export const getAllProductsAsync = createAsyncThunk(
   }
 );
 
-
+// Async thunk for fetching more products
 export const getMoreProdsAsync = createAsyncThunk(
   'products/getmoreproducts',
   async (creds: string) => {
@@ -29,28 +30,33 @@ export const getMoreProdsAsync = createAsyncThunk(
   }
 );
 
+// Slice for managing products and categories
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
+    // Define reducers if needed
   
 
   },
 
   extraReducers: (builder) => {
     builder
-
+      // Fulfilled action for fetching all products
       .addCase(getAllProductsAsync.fulfilled, (state, action) => {
         state.products = action.payload
+        // Adding unique categories to the categories array
         state.products.results.forEach((e: Product) => { !state.categories.includes(e.category) && state.categories.push(e.category) }
         )
       })
+      // Fulfilled action for fetching more products
       .addCase(getMoreProdsAsync.fulfilled, (state, action) => {
         state.products = action.payload
       })
   },
 });
 
+// Export action creators, selectors, and reducer
 export const { } = productsSlice.actions;
 export const selectProducts = (state: RootState) => state.productz.products;
 export const selectCategories = (state: RootState) => state.productz.categories;

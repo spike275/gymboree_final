@@ -1,3 +1,10 @@
+/**
+ * This file contains styling for the layout and navigation bar of the application.
+ */
+
+ /* Navigation Bar Styles */
+
+ /* Styles for the navigation bar container */
 .navigator {
     display: flex;
     justify-content: space-evenly;
@@ -8,6 +15,7 @@
     font-family: 'Comic Sans MS', cursive, sans-serif;
   }
   
+  /* Styles for navigation bar links */
   .navBarLink {
     color: #ffffff;
     text-decoration: none;
@@ -17,21 +25,25 @@
     font-weight: bolder;
   }
   
+  /* Styles for navigation bar links on hover */
   .navBarLink:hover {
     background-color: #ff6699;
     border-radius: 13px;
   }
   
+  /* Styles for the dropdown button */
   .dropDownBtn {
     position: relative;
     display: inline-block;
     cursor: pointer
   }
   
+  /* Styles for dropdown content when hovering over the dropdown button */
   .dropDownBtn:hover .dropContent {
     display: block;
   }
   
+  /* Styles for dropdown content container */
   .dropContent {
     display: none;
     position: absolute;
@@ -45,17 +57,20 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
-
+  
+  /* Styles for links inside the dropdown content */
   .dropContent a {
     color: #ff6699;
     font-size: 18px;
     text-decoration: none;
   }
   
+  /* Styles for links inside the dropdown content on hover */
   .dropContent a:hover {
     text-decoration: underline;
   }
   
+  /* Styles for the main logo link */
   .mainLogo {
     font-weight: bolder;
     font-size: x-large;
@@ -63,17 +78,19 @@
     color: #ffffff;
   }
   
-  
+  /* Styles for my account link inside the dropdown content on hover */
   .dropContent .myaccount:hover {
     background-color: #008CBA;
     color: white;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
   
+  /* Animation for the my account link in dropdown content */
   .dropContent .myaccount:hover {
     animation: pulse 1s ease-in-out infinite;
   }
   
+  /* Keyframes animation for the my account link pulse effect */
   @keyframes pulse {
     0% {
       transform: scale(1);
@@ -86,10 +103,12 @@
     }
   }
   
+  /* Transition effect for my account link in dropdown content */
   .dropContent .myaccount {
     transition: transform 0.5s ease-in-out;
   }
-  
+
+  /* Rotation effect for my account link in dropdown content on hover */
   .dropContent .myaccount:hover {
     transform: rotateY(180deg);
   }

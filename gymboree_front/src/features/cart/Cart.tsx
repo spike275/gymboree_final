@@ -9,6 +9,9 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Link, redirect } from 'react-router-dom'
 import { fontSize } from '@mui/system'
 
+/**
+ * Component for managing the shopping cart.
+ */
 const Cart = () => {
   const cart = useSelector(selectCart)
   const dispatch = useAppDispatch()
@@ -23,6 +26,10 @@ const Cart = () => {
     newtotal = tmp
   }, [cart])
 
+
+    /**
+   * Handle the checkout process.
+   */
   const handlecheckout = () => {
     setflag(!flag)
     return redirect("/cart")

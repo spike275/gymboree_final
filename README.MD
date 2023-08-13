@@ -1,9 +1,8 @@
 # Introduction
 
-Welcome to "Gymboree", our equipments for sale becomes the perfect choice of thousands of parents who are looking to keep their childrens occupied. Here you will find everything you need to set up home Gymboree for babies and childrens.
-It is definitely a recommended way to let the kids release energy and have fun while you enjoy a few good hours of quiet.
+Welcome to "Gymboree", a leading commercial provider of softplay equipment for children indoor play area with a range of functions. It is the perfect choice of thousands of parents who want to keep their children occupied. Here you will find everything you need to set up an indoor Gymboree for babies and toddlers. Softplay is an affordable and safe environment where the kids can play, explore, and make friends. Gymboree is built from high quality materials and component specifications so that it meets or exceeds all relevant safety standards. Careful details mean a better play experience and long lifetime. It is definitely a recommended way to let the kids release energy and have fun while you enjoy a break.
 
-- my store is built with technology  including React, Typescript, Redux, SQLite3, Django, JWT, and Django Rest Framework.
+- my store was built using the following technologies: React, Typescript, Redux, SQLite3, Django, JWT, and Django Rest Framework.
 
 # Features
 
@@ -36,9 +35,10 @@ React
 Redux
 
 # backend
-Please clone the project, using the following command:
+Please clone the project, using one of the following commands:
 
 git clone https://github.com/Iredel86/gymboree_final.git
+git clone https://github.com/spike275/gymboree_final.git 
 Once you have cloned the project, navigate to the following directory:
 
 cd /gymboree_final/gymboree_back
@@ -76,6 +76,7 @@ Password: 12345
 Open the file titled 'globalVar.ts' and change the following line:
 in render deploy
 export const SERVER = "https://gymboree-mmic.onrender.com/"
+export const SERVER = "https://gymboree-final4.onrender.com/"
 
 # LINK to MY WEBSITE
 https://warm-hamster-a53749.netlify.app/
@@ -84,12 +85,9 @@ https://warm-hamster-a53749.netlify.app/
 Once you have cloned the project, navigate to the following directory:
 
 cd /gymboree_final/gymboree_front
-Now you need unstall al the packege for run app
+use npm i in order to install all the packages needed to run the app; 
 
-npm i
-After all the installation as finished
-
-npm start
+once the installation is completed use npm start
 
 
 

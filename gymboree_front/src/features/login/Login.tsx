@@ -4,15 +4,13 @@ import { useAppDispatch } from "../../app/hooks"
 import { useSelector } from 'react-redux'
 import Admin from '../admin/Admin'
 import "./login.css"
-
-
-
 import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
-
+  // Selecting the current user from the Redux store
   const currentUser: string = useSelector(selectUser)
   const dispatch = useAppDispatch()
+  // State variables to hold user input for registration
   const [username, setusername] = useState("")
   const [password, setpassword] = useState("")
   const [pwd_confirm, setpwd_confirm] = useState("")
@@ -20,7 +18,8 @@ const Login = () => {
   const [phoneNum, setphoneNum] = useState("")
   const [email, setemail] = useState("")
   const [reg_flag, setreg_flag] = useState(false)
-
+  
+  // Function to handle user registration
   const handleReg = () => {
     dispatch(registerAsync({ username, password, address, "phone_number": phoneNum, email }))
     setreg_flag(!reg_flag)

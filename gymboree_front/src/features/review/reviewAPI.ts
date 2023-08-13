@@ -1,7 +1,10 @@
 import axios from "axios";
 import { SERVER } from "../../globalVar";
 
-
+/**
+ * Fetches reviews from the server.
+ * @returns A Promise containing the review data.
+ */
   export function getReviews() {
     return new Promise<{ data: any }>((resolve) =>
     axios
@@ -11,7 +14,11 @@ import { SERVER } from "../../globalVar";
     );
   }
 
-
+/**
+ * Sends a new review to the server.
+ * @param creds - Review details to be sent.
+ * @returns A Promise containing the response data.
+ */
   export function sendNewReview(creds: any) {
     return new Promise<{ data: any }>((resolve) =>
       axios

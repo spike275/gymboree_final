@@ -12,19 +12,23 @@ import { getReviewsAsync } from "../features/review/reviewSlice";
 import { userOrdersAsync } from "../features/MyOrders/myOrdersSlice";
 import SearchBar from "./SearchBar";
 
+/**
+ * Layout component represents the main layout of the application.
+ * It includes the navigation bar, common components, and renders the main content using React Router's Outlet.
+ */
 const Layout = () => {
 
     const currentUser: string = useSelector(selectUser)
     const dispatch = useAppDispatch()
 
-
+    // Fetch initial data on component mount
     useEffect(() => {
         dispatch(getAllProductsAsync())
         dispatch(getReviewsAsync())
         dispatch(userOrdersAsync())
     }, [])
 
-    //  refreshes users tokens - 
+    //  refreshes users tokens and manage user authentication status
     useEffect(() => {
         const token = localStorage.getItem('axx')
         const refresh = localStorage.getItem('refresh')

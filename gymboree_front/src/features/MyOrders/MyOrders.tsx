@@ -5,7 +5,11 @@ import { Order } from '../../models/myOrders'
 import Product from '../../models/Product'
 import { selectOrders, userOrdersAsync } from './myOrdersSlice'
 
+/**
+ * Represents the component responsible for displaying the user's orders.
+ */
 const MyOrders = () => {
+  // Fetch orders from Redux store
   const orders = useSelector(selectOrders)
 
   return (

@@ -5,7 +5,9 @@ import { useAppDispatch } from '../../app/hooks'
 import { selectUser } from '../login/loginSlice'
 import { addProdAsync } from './productSlice'
 
-
+/**
+ * Component for managing store products in the admin panel.
+ */
 const Admin = () => {
     const currentUser: string = useSelector(selectUser)
     const navigate = useNavigate()
@@ -17,10 +19,18 @@ const Admin = () => {
     const [img, setimg] = useState(null)
     const [category, setcategory] = useState("")
 
+    /**
+     * Handle image selection for the product.
+     * 
+     * @param {Event} event - The input change event containing selected image.
+     */
     const handleImg = (event: any) => {
         setimg(event.target.files[0])
     }
 
+    /**
+     * Send a new product to be added asynchronously to the store.
+     */
     const sendProduct = () => {
         console.log('first')
         dispatch(addProdAsync({ name, price, "description":desc, "image":img, category  }))

@@ -8,7 +8,9 @@ const Logout = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        // Dispatch the logoutAsync action to log the user out
         dispatch(logoutAsync(localStorage.getItem('refresh')))
+        // Clear local storage and navigate to the home page
         localStorage.clear()
         navigate("/")
     }, [])

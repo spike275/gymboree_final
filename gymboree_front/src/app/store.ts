@@ -6,6 +6,9 @@ import productsReducer from '../features/Home/manyProductsSlice';
 import myOrdersReducer from '../features/MyOrders/myOrdersSlice';
 import reviewReducer from '../features/review/reviewSlice';
 
+/**
+ * The root store configuration.
+ */
 export const store = configureStore({
   reducer: {
     login: loginReducer,
@@ -17,8 +20,15 @@ export const store = configureStore({
   },
 });
 
+//The dispatch function type derived from the store.
 export type AppDispatch = typeof store.dispatch;
+
+//The root state type derived from the store.
 export type RootState = ReturnType<typeof store.getState>;
+
+/**
+ * A thunk action type that encapsulates asynchronous logic.
+ */
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

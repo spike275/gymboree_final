@@ -3,6 +3,9 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useSelector } from 'react-redux';
 import { selectCart } from './cartSlice';
 
+/**
+ * Component for handling the checkout process.
+ */
 const Checkout = () => {
     const cart = useSelector(selectCart)
     let total = 0
