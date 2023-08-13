@@ -5,6 +5,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
+    """
+    Custom user model that extends the AbstractUser model.
+    """
     address = models.CharField(max_length = 150, null = True, blank = True)
     phone_number = models.CharField(max_length = 20, null = True, blank = True)
     age = models.IntegerField(null = True, blank = True)
@@ -12,8 +15,10 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'phone_number']
 
-# Create your models here.
 class Product(models.Model):
+    """
+    Represents a product in the store.
+    """
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -24,13 +29,18 @@ class Product(models.Model):
 
 
 class Orders(models.Model):
+    """ 
+    Represents a product in the store.
+    """
     user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.user.username
     
-
 class OrderItem(models.Model):
+    """
+    Represents an item within an order.
+    """
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Orders, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
@@ -43,10 +53,11 @@ class OrderItem(models.Model):
         return str(self.name)
     
 
-# need to add FK to product that is being reviewd
-
 class Review(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    """ 
+    Represents a review of a product.
+    """
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True) #need to add FK to product that is being reviewd
     user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     text = models.TextField()

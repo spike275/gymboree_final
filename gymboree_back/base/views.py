@@ -21,15 +21,19 @@ from rest_framework.pagination import PageNumberPagination
 
 #### AUTHENTICATION VIEW ####
 
-# logout
 class LogoutAPIView(APIView):
+    """
+    API view to handle user logout.
+    """
     def post(self, request):
         refresh_token = RefreshToken(request.data.get('refresh'))
         refresh_token.blacklist()
         return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)
 
-# refresh token
 class RefreshTokenView(generics.GenericAPIView):
+    """
+    API view to refresh authentication token.
+    """
     serializer_class = TokenRefreshSerializer
 
     def post(self, request, *args, **kwargs):
@@ -39,6 +43,9 @@ class RefreshTokenView(generics.GenericAPIView):
 
 #login
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """
+    API view to obtain JWT tokens with custom claims.
+    """
     @classmethod
     def get_token(cls, user):
 
@@ -53,6 +60,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 # register
 @api_view(['POST'])
 def register(request):
+    """
+    API view to register a new user.
+    """
     try:
         # Extract username and password from the request data
         tmp=request.data
@@ -94,6 +104,9 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def get_user_profile(request):
+    """
+    API view to retrieve the authenticated user's profile.
+    """
     user = request.user
     serilaizer = CustomUserSerializer(user, many=False)
     return Response(serilaizer.data)
@@ -102,6 +115,9 @@ def get_user_profile(request):
 @api_view(["PUT"])
 @permission_classes([IsAuthenticated])
 def update_user_profile(request):
+    """
+    API view to update the authenticated user's profile.
+    """
     user = request.user
     serializer = CustomUserSerializer(
         instance=user, data=request.data, partial=True)
@@ -113,6 +129,9 @@ def update_user_profile(request):
 
 @api_view(['GET'])
 def myProducts(req):
+    """
+    API view to retrieve a list of products.
+    """
     if req.method == 'GET':
         all_products = Product.objects.all()
         if 'all' in req.query_params and req.query_params['all'] == 'true':
@@ -140,14 +159,11 @@ def myProducts(req):
         Product.objects.delete(id=req.data["id"])
         return Response("delted")
 
-
-# //////////// image upload / display
-# return all images to client (without serialize)
-
-
-# needs to be checked i think not being used!!!!
 @api_view(['GET'])
 def getImages(request):
+    """
+    API view to retrieve product images.
+    """
     paginator = PageNumberPagination()
     paginator.page_size = 5  # set the number of items per page
 
@@ -165,8 +181,10 @@ def getImages(request):
     
     return paginator.get_paginated_response(res)
 
-# upload image method (with serialize)
 class APIViews(APIView):
+    """
+    API view to handle image upload and display.
+    """
     parser_class = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
@@ -180,6 +198,9 @@ class APIViews(APIView):
             return Response(api_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
+            """
+            API view to delete a product.
+            """
             try:
                 product = Product.objects.get(pk=pk)
             except Product.DoesNotExist:
@@ -187,15 +208,15 @@ class APIViews(APIView):
 
             product.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-# //////////// end      image upload / display
 
 #### order view ####
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def order(req):
-
-    # order
+    """
+    API view to place an order.
+    """
     serializer = OrderSerializer(data={}, context={'user': req.user})
     if serializer.is_valid():
         serializer.save()
@@ -229,20 +250,22 @@ def order(req):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_orders(req):
+    """
+    API view to retrieve orders of the authenticated user.
+    """
     orders = Orders.objects.filter(user=req.user)
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
 
 #### REVIEW VIEW ####
 
-# views.py
-
-
 
 @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
 def get_all_reviews(req):
-    
+    """
+    API view to retrieve all reviews.
+    """
     serializer = ReviewSerializer(Review.objects.all(), many=True)
     return Response(serializer.data)
 
@@ -251,6 +274,9 @@ def get_all_reviews(req):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_review(req):
+    """
+    API view to create a review.
+    """
     serializer = ReviewSerializer(data=req.data, context={"user":req.user})
     if serializer.is_valid():
         serializer.save()
