@@ -78,6 +78,14 @@ in render deploy
 export const SERVER = "https://gymboree-mmic.onrender.com/"
 export const SERVER = "https://gymboree-final4.onrender.com/"
 
+# Docker 
+Once you have cloned the Git repository, start the containers using the Docker Compose conmmand:
+
+docker compose up
+
+This is my docker for the back: docker pull spikeliron/gymboree_final:backend
+This is my docker for the front: docker pull spikeliron/gymboree_final:frontend
+
 # LINK to MY WEBSITE
 https://warm-hamster-a53749.netlify.app/
 https://mellifluous-tiramisu-8bda27.netlify.app/
