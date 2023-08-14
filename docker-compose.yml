@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./gymboree_back
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./gymboree_back:/app
+      - database:/app/db
+    environment:
+      - DEBUG=1
+    restart: always
+
+  frontend:
+    build:
+      context: ./gymboree_front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./gymboree_front:/app
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  database:
